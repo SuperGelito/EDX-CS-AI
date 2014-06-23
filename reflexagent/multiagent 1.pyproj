@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2fde29d9-8da3-454f-a0b1-63e62a0948b8}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>pacman.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <CommandLineArguments>--frameTime 0 -p ReflexAgent -k 2</CommandLineArguments>
+    <InterpreterPath />
+    <InterpreterArguments />
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Compile Include="autograder.py" />
+    <Compile Include="game.py" />
+    <Compile Include="ghostAgents.py" />
+    <Compile Include="grading.py" />
+    <Compile Include="graphicsDisplay.py" />
+    <Compile Include="graphicsUtils.py" />
+    <Compile Include="keyboardAgents.py" />
+    <Compile Include="layout.py" />
+    <Compile Include="multiAgents.py" />
+    <Compile Include="multiagentTestClasses.py" />
+    <Compile Include="pacman.py" />
+    <Compile Include="pacmanAgents.py" />
+    <Compile Include="projectParams.py" />
+    <Compile Include="search.py" />
+    <Compile Include="searchAgents.py" />
+    <Compile Include="testClasses.py" />
+    <Compile Include="testParser.py" />
+    <Compile Include="textDisplay.py" />
+    <Compile Include="util.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="layouts\" />
+    <Folder Include="obj\" />
+    <Folder Include="obj\Debug\" />
+    <Folder Include="test_cases\" />
+    <Folder Include="test_cases\extra\" />
+    <Folder Include="test_cases\q1\" />
+    <Folder Include="test_cases\q2\" />
+    <Folder Include="test_cases\q3\" />
+    <Folder Include="test_cases\q4\" />
+    <Folder Include="test_cases\q5\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="layouts\capsuleClassic.lay" />
+    <Content Include="layouts\contestClassic.lay" />
+    <Content Include="layouts\mediumClassic.lay" />
+    <Content Include="layouts\minimaxClassic.lay" />
+    <Content Include="layouts\openClassic.lay" />
+    <Content Include="layouts\originalClassic.lay" />
+    <Content Include="layouts\smallClassic.lay" />
+    <Content Include="layouts\testClassic.lay" />
+    <Content Include="layouts\trappedClassic.lay" />
+    <Content Include="layouts\trickyClassic.lay" />
+    <Content Include="test_cases\CONFIG" />
+    <Content Include="test_cases\extra\CONFIG" />
+    <Content Include="test_cases\extra\grade-agent.solution" />
+    <Content Include="test_cases\extra\grade-agent.test" />
+    <Content Include="test_cases\q1\CONFIG" />
+    <Content Include="test_cases\q1\grade-agent.solution" />
+    <Content Include="test_cases\q1\grade-agent.test" />
+    <Content Include="test_cases\q2\0-lecture-6-tree.solution" />
+    <Content Include="test_cases\q2\0-lecture-6-tree.test" />
+    <Content Include="test_cases\q2\0-small-tree.solution" />
+    <Content Include="test_cases\q2\0-small-tree.test" />
+    <Content Include="test_cases\q2\1-1-minmax.solution" />
+    <Content Include="test_cases\q2\1-1-minmax.test" />
+    <Content Include="test_cases\q2\1-2-minmax.solution" />
+    <Content Include="test_cases\q2\1-2-minmax.test" />
+    <Content Include="test_cases\q2\1-3-minmax.solution" />
+    <Content Include="test_cases\q2\1-3-minmax.test" />
+    <Content Include="test_cases\q2\1-4-minmax.solution" />
+    <Content Include="test_cases\q2\1-4-minmax.test" />
+    <Content Include="test_cases\q2\1-5-minmax.solution" />
+    <Content Include="test_cases\q2\1-5-minmax.test" />
+    <Content Include="test_cases\q2\1-6-minmax.solution" />
+    <Content Include="test_cases\q2\1-6-minmax.test" />
+    <Content Include="test_cases\q2\1-7-minmax.solution" />
+    <Content Include="test_cases\q2\1-7-minmax.test" />
+    <Content Include="test_cases\q2\1-8-minmax.solution" />
+    <Content Include="test_cases\q2\1-8-minmax.test" />
+    <Content Include="test_cases\q2\2-1a-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-1a-vary-depth.test" />
+    <Content Include="test_cases\q2\2-1b-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-1b-vary-depth.test" />
+    <Content Include="test_cases\q2\2-2a-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-2a-vary-depth.test" />
+    <Content Include="test_cases\q2\2-2b-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-2b-vary-depth.test" />
+    <Content Include="test_cases\q2\2-3a-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-3a-vary-depth.test" />
+    <Content Include="test_cases\q2\2-3b-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-3b-vary-depth.test" />
+    <Content Include="test_cases\q2\2-4a-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-4a-vary-depth.test" />
+    <Content Include="test_cases\q2\2-4b-vary-depth.solution" />
+    <Content Include="test_cases\q2\2-4b-vary-depth.test" />
+    <Content Include="test_cases\q2\2-one-ghost-3level.solution" />
+    <Content Include="test_cases\q2\2-one-ghost-3level.test" />
+    <Content Include="test_cases\q2\3-one-ghost-4level.solution" />
+    <Content Include="test_cases\q2\3-one-ghost-4level.test" />
+    <Content Include="test_cases\q2\4-two-ghosts-3level.solution" />
+    <Content Include="test_cases\q2\4-two-ghosts-3level.test" />
+    <Content Include="test_cases\q2\5-two-ghosts-4level.solution" />
+    <Content Include="test_cases\q2\5-two-ghosts-4level.test" />
+    <Content Include="test_cases\q2\6-tied-root.solution" />
+    <Content Include="test_cases\q2\6-tied-root.test" />
+    <Content Include="test_cases\q2\7-pacman-game.solution" />
+    <Content Include="test_cases\q2\7-pacman-game.test" />
+    <Content Include="test_cases\q2\CONFIG" />
+    <Content Include="test_cases\q3\0-lecture-6-tree.solution" />
+    <Content Include="test_cases\q3\0-lecture-6-tree.test" />
+    <Content Include="test_cases\q3\0-small-tree.solution" />
+    <Content Include="test_cases\q3\0-small-tree.test" />
+    <Content Include="test_cases\q3\1-1-minmax.solution" />
+    <Content Include="test_cases\q3\1-1-minmax.test" />
+    <Content Include="test_cases\q3\1-2-minmax.solution" />
+    <Content Include="test_cases\q3\1-2-minmax.test" />
+    <Content Include="test_cases\q3\1-3-minmax.solution" />
+    <Content Include="test_cases\q3\1-3-minmax.test" />
+    <Content Include="test_cases\q3\1-4-minmax.solution" />
+    <Content Include="test_cases\q3\1-4-minmax.test" />
+    <Content Include="test_cases\q3\1-5-minmax.solution" />
+    <Content Include="test_cases\q3\1-5-minmax.test" />
+    <Content Include="test_cases\q3\1-6-minmax.solution" />
+    <Content Include="test_cases\q3\1-6-minmax.test" />
+    <Content Include="test_cases\q3\1-7-minmax.solution" />
+    <Content Include="test_cases\q3\1-7-minmax.test" />
+    <Content Include="test_cases\q3\1-8-minmax.solution" />
+    <Content Include="test_cases\q3\1-8-minmax.test" />
+    <Content Include="test_cases\q3\2-1a-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-1a-vary-depth.test" />
+    <Content Include="test_cases\q3\2-1b-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-1b-vary-depth.test" />
+    <Content Include="test_cases\q3\2-2a-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-2a-vary-depth.test" />
+    <Content Include="test_cases\q3\2-2b-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-2b-vary-depth.test" />
+    <Content Include="test_cases\q3\2-3a-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-3a-vary-depth.test" />
+    <Content Include="test_cases\q3\2-3b-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-3b-vary-depth.test" />
+    <Content Include="test_cases\q3\2-4a-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-4a-vary-depth.test" />
+    <Content Include="test_cases\q3\2-4b-vary-depth.solution" />
+    <Content Include="test_cases\q3\2-4b-vary-depth.test" />
+    <Content Include="test_cases\q3\2-one-ghost-3level.solution" />
+    <Content Include="test_cases\q3\2-one-ghost-3level.test" />
+    <Content Include="test_cases\q3\3-one-ghost-4level.solution" />
+    <Content Include="test_cases\q3\3-one-ghost-4level.test" />
+    <Content Include="test_cases\q3\4-two-ghosts-3level.solution" />
+    <Content Include="test_cases\q3\4-two-ghosts-3level.test" />
+    <Content Include="test_cases\q3\5-two-ghosts-4level.solution" />
+    <Content Include="test_cases\q3\5-two-ghosts-4level.test" />
+    <Content Include="test_cases\q3\6-tied-root.solution" />
+    <Content Include="test_cases\q3\6-tied-root.test" />
+    <Content Include="test_cases\q3\7-pacman-game.solution" />
+    <Content Include="test_cases\q3\7-pacman-game.test" />
+    <Content Include="test_cases\q3\CONFIG" />
+    <Content Include="test_cases\q4\0-expectimax1.solution" />
+    <Content Include="test_cases\q4\0-expectimax1.test" />
+    <Content Include="test_cases\q4\1-expectimax2.solution" />
+    <Content Include="test_cases\q4\1-expectimax2.test" />
+    <Content Include="test_cases\q4\2-one-ghost-3level.solution" />
+    <Content Include="test_cases\q4\2-one-ghost-3level.test" />
+    <Content Include="test_cases\q4\3-one-ghost-4level.solution" />
+    <Content Include="test_cases\q4\3-one-ghost-4level.test" />
+    <Content Include="test_cases\q4\4-two-ghosts-3level.solution" />
+    <Content Include="test_cases\q4\4-two-ghosts-3level.test" />
+    <Content Include="test_cases\q4\5-two-ghosts-4level.solution" />
+    <Content Include="test_cases\q4\5-two-ghosts-4level.test" />
+    <Content Include="test_cases\q4\6-pacman-game.solution" />
+    <Content Include="test_cases\q4\6-pacman-game.test" />
+    <Content Include="test_cases\q4\CONFIG" />
+    <Content Include="test_cases\q5\CONFIG" />
+    <Content Include="test_cases\q5\grade-agent.solution" />
+    <Content Include="test_cases\q5\grade-agent.test" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
