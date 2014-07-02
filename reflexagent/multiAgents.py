@@ -179,34 +179,44 @@ class MinimaxAgent(MultiAgentSearchAgent):
           gameState.getNumAgents():
             Returns the total number of agents in the game
         """
-        return MinimaxAgent.miniMaxSearch(self,gameState,0,0)[0]
+        return MinimaxAgent.miniMaxSearch(self,gameState,0,1)[0]
 
     def miniMaxSearch(self,gameState,currentIndex,currentDepth):
         import copy
+        #Check if we need to reset the depth and index
         if currentIndex >= gameState.getNumAgents():
             currentIndex = 0
             currentDepth = currentDepth + 1
+        #Legal actions of the current state
         actions = gameState.getLegalActions(currentIndex)
+        #Default min Agent
         MaxAgent = False
+        #If agent is Pacman then is a max agent
         if currentIndex == 0:
             MaxAgent = True
+        #This is the current option not initialized, we will return this as action
         currentOption = None
+        #Go over legal actions
         for ac in actions:
+            #Create the next state based on current action
             sGameState = gameState.generateSuccessor(currentIndex, ac)
-            if currentDepth == self.depth:
-                return (ac, self.evaluationFunction(sGameState))
+            #if we are in max depth we evaluate the state
+            childOption = None
+            if (currentDepth == self.depth and currentIndex == gameState.getNumAgents() - 1) or sGameState.isWin() or sGameState.isLose():
+                childOption = (ac, self.evaluationFunction(sGameState))
             else:
+                #if depth is not maximum we set the value based on its children then we evaluate the branch, this will make the same option
                 childOption = MinimaxAgent.miniMaxSearch(self,sGameState,currentIndex+1,copy.copy(currentDepth))
-                if childOption!=None:
-                    acVal = (ac,childOption[1])
-                    select = False
-                    if currentOption == None:
+            if childOption!=None:
+                acVal = (ac,childOption[1])
+                select = False
+                if currentOption == None:
+                    select = True
+                else:
+                    if (MaxAgent and childOption[1] > currentOption[1]) or (not MaxAgent and childOption[1] < currentOption[1]):
                         select = True
-                    else:
-                        if (MaxAgent and childOption[1] > currentOption[1]) or (not childOption[1] and val < currentOption[1]):
-                            select = True
-                    if select:
-                        currentOption = acVal
+                if select:
+                    currentOption = acVal
         return currentOption
 
 
@@ -220,9 +230,49 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         """
           Returns the minimax action using self.depth and self.evaluationFunction
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        return AlphaBetaAgent.alphaBetaSearch(self,gameState,0,1,-100000,100000)[0]
 
+    def alphaBetaSearch(self,gameState,currentIndex,currentDepth,alpha,beta):
+        import copy
+        #Check if we need to reset the depth and index
+        if currentIndex >= gameState.getNumAgents():
+            currentIndex = 0
+            currentDepth = currentDepth + 1
+        #Legal actions of the current state
+        actions = gameState.getLegalActions(currentIndex)
+        #Default min Agent
+        MaxAgent = False
+        #If agent is Pacman then is a max agent
+        if currentIndex == 0:
+            MaxAgent = True
+        #This is the current option not initialized, we will return this as action
+        currentOption = None
+        if(MaxAgent):
+            currentOption = (None,-100000)
+        else:
+            currentOption = (None,100000)
+        #Go over legal actions
+        for ac in actions:
+            #Create the next state based on current action
+            sGameState = gameState.generateSuccessor(currentIndex, ac)
+            #if we are in max depth we evaluate the state
+            childOption = None
+            if (MaxAgent and currentOption[1] < beta) or (not MaxAgent and currentOption[1] > alpha) :
+                if (currentDepth == self.depth and currentIndex == gameState.getNumAgents() - 1) or sGameState.isWin() or sGameState.isLose():
+                    childOption = (ac, self.evaluationFunction(sGameState))
+                else:
+                    #if depth is not maximum we set the value based on its children then we evaluate the branch, this will make the same option
+                    childOption = AlphaBetaAgent.alphaBetaSearch(self,sGameState,currentIndex+1,copy.copy(currentDepth),copy.copy(alpha),copy.copy(beta))
+            if childOption!=None:
+                acVal = (ac,childOption[1])
+                select = False
+                if (MaxAgent and childOption[1] > currentOption[1]):
+                    currentOption = acVal
+                    alpha = childOption[1]
+                elif (not MaxAgent and childOption[1] < currentOption[1]):
+                    currentOption = acVal
+                    beta = childOption[1]
+        return currentOption
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
       Your expectimax agent (question 4)
