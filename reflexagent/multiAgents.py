@@ -253,25 +253,27 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
             currentOption = (None,100000)
         #Go over legal actions
         for ac in actions:
-            #Create the next state based on current action
-            sGameState = gameState.generateSuccessor(currentIndex, ac)
-            #if we are in max depth we evaluate the state
-            childOption = None
-            if (MaxAgent and currentOption[1] < beta) or (not MaxAgent and currentOption[1] > alpha) :
+            if (MaxAgent and currentOption[1] <= beta) or (not MaxAgent and currentOption[1] >= alpha) :
+                #Create the next state based on current action
+                sGameState = gameState.generateSuccessor(currentIndex, ac)
+                #if we are in max depth we evaluate the state
+                childOption = None
                 if (currentDepth == self.depth and currentIndex == gameState.getNumAgents() - 1) or sGameState.isWin() or sGameState.isLose():
                     childOption = (ac, self.evaluationFunction(sGameState))
                 else:
                     #if depth is not maximum we set the value based on its children then we evaluate the branch, this will make the same option
                     childOption = AlphaBetaAgent.alphaBetaSearch(self,sGameState,currentIndex+1,copy.copy(currentDepth),copy.copy(alpha),copy.copy(beta))
-            if childOption!=None:
-                acVal = (ac,childOption[1])
-                select = False
-                if (MaxAgent and childOption[1] > currentOption[1]):
-                    currentOption = acVal
-                    alpha = childOption[1]
-                elif (not MaxAgent and childOption[1] < currentOption[1]):
-                    currentOption = acVal
-                    beta = childOption[1]
+                if childOption!=None:
+                    acVal = (ac,childOption[1])
+                    select = False
+                    if (MaxAgent and childOption[1] > currentOption[1]):
+                        currentOption = acVal
+                        if currentOption[1] > alpha:
+                            alpha = currentOption[1]
+                    elif (not MaxAgent and childOption[1] < currentOption[1]):
+                        currentOption = acVal
+                        if currentOption[1] < beta:
+                            beta = currentOption[1]
         return currentOption
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
