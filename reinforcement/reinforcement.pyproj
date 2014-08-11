@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{bc94d723-7001-498f-acbb-a0101c8c2887}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile />
+    <SearchPath>layouts\;test_cases\</SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Compile Include="analysis.py" />
+    <Compile Include="autograder.py" />
+    <Compile Include="crawler.py" />
+    <Compile Include="environment.py" />
+    <Compile Include="featureExtractors.py" />
+    <Compile Include="game.py" />
+    <Compile Include="ghostAgents.py" />
+    <Compile Include="grading.py" />
+    <Compile Include="graphicsCrawlerDisplay.py" />
+    <Compile Include="graphicsDisplay.py" />
+    <Compile Include="graphicsGridworldDisplay.py" />
+    <Compile Include="graphicsUtils.py" />
+    <Compile Include="gridworld.py" />
+    <Compile Include="keyboardAgents.py" />
+    <Compile Include="layout.py" />
+    <Compile Include="learningAgents.py" />
+    <Compile Include="mdp.py" />
+    <Compile Include="pacman.py" />
+    <Compile Include="pacmanAgents.py" />
+    <Compile Include="projectParams.py" />
+    <Compile Include="qlearningAgents.py" />
+    <Compile Include="reinforcementTestClasses.py" />
+    <Compile Include="testClasses.py" />
+    <Compile Include="testParser.py" />
+    <Compile Include="textDisplay.py" />
+    <Compile Include="textGridworldDisplay.py" />
+    <Compile Include="util.py" />
+    <Compile Include="valueIterationAgents.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="layouts\" />
+    <Folder Include="test_cases\" />
+    <Folder Include="test_cases\q1\" />
+    <Folder Include="test_cases\q2\" />
+    <Folder Include="test_cases\q3\" />
+    <Folder Include="test_cases\q4\" />
+    <Folder Include="test_cases\q5\" />
+    <Folder Include="test_cases\q6\" />
+    <Folder Include="test_cases\q7\" />
+    <Folder Include="test_cases\q8\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="layouts\capsuleClassic.lay" />
+    <Content Include="layouts\contestClassic.lay" />
+    <Content Include="layouts\mediumClassic.lay" />
+    <Content Include="layouts\mediumGrid.lay" />
+    <Content Include="layouts\minimaxClassic.lay" />
+    <Content Include="layouts\openClassic.lay" />
+    <Content Include="layouts\originalClassic.lay" />
+    <Content Include="layouts\smallClassic.lay" />
+    <Content Include="layouts\smallGrid.lay" />
+    <Content Include="layouts\testClassic.lay" />
+    <Content Include="layouts\trappedClassic.lay" />
+    <Content Include="layouts\trickyClassic.lay" />
+    <Content Include="test_cases\CONFIG" />
+    <Content Include="test_cases\q1\1-tinygrid.solution" />
+    <Content Include="test_cases\q1\1-tinygrid.test" />
+    <Content Include="test_cases\q1\2-tinygrid-noisy.solution" />
+    <Content Include="test_cases\q1\2-tinygrid-noisy.test" />
+    <Content Include="test_cases\q1\3-bridge.solution" />
+    <Content Include="test_cases\q1\3-bridge.test" />
+    <Content Include="test_cases\q1\4-discountgrid.solution" />
+    <Content Include="test_cases\q1\4-discountgrid.test" />
+    <Content Include="test_cases\q1\CONFIG" />
+    <Content Include="test_cases\q2\1-bridge-grid.solution" />
+    <Content Include="test_cases\q2\1-bridge-grid.test" />
+    <Content Include="test_cases\q2\CONFIG" />
+    <Content Include="test_cases\q3\1-question-3.1.solution" />
+    <Content Include="test_cases\q3\1-question-3.1.test" />
+    <Content Include="test_cases\q3\2-question-3.2.solution" />
+    <Content Include="test_cases\q3\2-question-3.2.test" />
+    <Content Include="test_cases\q3\3-question-3.3.solution" />
+    <Content Include="test_cases\q3\3-question-3.3.test" />
+    <Content Include="test_cases\q3\4-question-3.4.solution" />
+    <Content Include="test_cases\q3\4-question-3.4.test" />
+    <Content Include="test_cases\q3\5-question-3.5.solution" />
+    <Content Include="test_cases\q3\5-question-3.5.test" />
+    <Content Include="test_cases\q3\CONFIG" />
+    <Content Include="test_cases\q4\1-tinygrid.solution" />
+    <Content Include="test_cases\q4\1-tinygrid.test" />
+    <Content Include="test_cases\q4\2-tinygrid-noisy.solution" />
+    <Content Include="test_cases\q4\2-tinygrid-noisy.test" />
+    <Content Include="test_cases\q4\3-bridge.solution" />
+    <Content Include="test_cases\q4\3-bridge.test" />
+    <Content Include="test_cases\q4\4-discountgrid.solution" />
+    <Content Include="test_cases\q4\4-discountgrid.test" />
+    <Content Include="test_cases\q4\CONFIG" />
+    <Content Include="test_cases\q5\1-tinygrid.solution" />
+    <Content Include="test_cases\q5\1-tinygrid.test" />
+    <Content Include="test_cases\q5\2-tinygrid-noisy.solution" />
+    <Content Include="test_cases\q5\2-tinygrid-noisy.test" />
+    <Content Include="test_cases\q5\3-bridge.solution" />
+    <Content Include="test_cases\q5\3-bridge.test" />
+    <Content Include="test_cases\q5\4-discountgrid.solution" />
+    <Content Include="test_cases\q5\4-discountgrid.test" />
+    <Content Include="test_cases\q5\CONFIG" />
+    <Content Include="test_cases\q6\CONFIG" />
+    <Content Include="test_cases\q6\grade-agent.solution" />
+    <Content Include="test_cases\q6\grade-agent.test" />
+    <Content Include="test_cases\q7\CONFIG" />
+    <Content Include="test_cases\q7\grade-agent.solution" />
+    <Content Include="test_cases\q7\grade-agent.test" />
+    <Content Include="test_cases\q8\1-tinygrid.solution" />
+    <Content Include="test_cases\q8\1-tinygrid.test" />
+    <Content Include="test_cases\q8\2-tinygrid-noisy.solution" />
+    <Content Include="test_cases\q8\2-tinygrid-noisy.test" />
+    <Content Include="test_cases\q8\3-bridge.solution" />
+    <Content Include="test_cases\q8\3-bridge.test" />
+    <Content Include="test_cases\q8\4-discountgrid.solution" />
+    <Content Include="test_cases\q8\4-discountgrid.test" />
+    <Content Include="test_cases\q8\5-coord-extractor.solution" />
+    <Content Include="test_cases\q8\5-coord-extractor.test" />
+    <Content Include="test_cases\q8\CONFIG" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
