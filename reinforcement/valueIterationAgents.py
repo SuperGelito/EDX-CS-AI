@@ -12,6 +12,7 @@ import mdp, util
 
 from learningAgents import ValueEstimationAgent
 
+
 class ValueIterationAgent(ValueEstimationAgent):
     """
         * Please read learningAgents.py before reading this.*
@@ -21,7 +22,8 @@ class ValueIterationAgent(ValueEstimationAgent):
         for a given number of iterations using the supplied
         discount factor.
     """
-    def __init__(self, mdp, discount = 0.9, iterations = 100):
+
+    def __init__(self, mdp, discount=0.9, iterations=100):
         """
           Your value iteration agent should take an mdp on
           construction, run the indicated number of iterations
@@ -37,7 +39,7 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.mdp = mdp
         self.discount = discount
         self.iterations = iterations
-        self.values = util.Counter() # A Counter is a dict with default 0
+        self.values = util.Counter()  # A Counter is a dict with default 0
 
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
@@ -55,8 +57,28 @@ class ValueIterationAgent(ValueEstimationAgent):
           Compute the Q-value of action in state from the
           value function stored in self.values.
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+
+        # Apply Bellman Equation to get QValue
+        tempValues = self.values
+        possibleStates = self.mdp.getTransitionStatesAndProbs(state, action)
+        sumValPossibleStates = 0
+        for posState in possibleStates:
+            nextState = posState[0]
+            rew = self.mdp.getReward(state, action, nextState)
+            prob = posState[1]
+            maxFutureActionVal = None
+            futureActions = self.mdp.getPossibleActions(nextState)
+            for futAction in futureActions:
+                futureActionValue = tempValues[(nextState, futAction)]
+                if maxFutureActionVal is None or futureActionValue > maxFutureActionVal:
+                    maxFutureActionVal = futureActionValue
+            if maxFutureActionVal is None:
+                maxFutureActionVal = 0
+            val = prob * (rew + (self.discount * maxFutureActionVal))
+            sumValPossibleStates += val
+        tempValues[(state, action)] = sumValPossibleStates
+        self.values = tempValues
+        return sumValPossibleStates
 
     def computeActionFromValues(self, state):
         """
@@ -67,8 +89,20 @@ class ValueIterationAgent(ValueEstimationAgent):
           there are no legal actions, which is the case at the
           terminal state, you should return None.
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        retAction = None
+        maxValue = 0
+        for action in self.mdp.getPossibleActions(state):
+            actionVal = self.values[(state, action)]
+            setAction = False
+            if retAction == None:
+                setAction=True
+            else:
+                if actionVal > maxValue:
+                    setAction=True
+            if setAction:
+                maxValue=actionVal
+                retAction=action
+        return retAction
 
     def getPolicy(self, state):
         return self.computeActionFromValues(state)
