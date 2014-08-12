@@ -8,7 +8,7 @@
 # Abbeel in Spring 2013.
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/pacman/pacman.html
 
-import mdp, util
+import util
 
 from learningAgents import ValueEstimationAgent
 
@@ -39,11 +39,21 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.mdp = mdp
         self.discount = discount
         self.iterations = iterations
+        #Values of the status
         self.values = util.Counter()  # A Counter is a dict with default 0
+        self.valuesTemp = self.values.copy()
 
-        # Write value iteration code here
-        "*** YOUR CODE HERE ***"
-
+        for i in range(0, iterations, 1):
+            states = mdp.getStates()
+            for state in states:
+                if not mdp.isTerminal(state):
+                    actions = mdp.getPossibleActions(state)
+                    actVals = []
+                    for action in actions:
+                        qVal = self.computeQValueFromValues(state, action)
+                        actVals.append(qVal)
+                    self.valuesTemp[state] = max(actVals)
+            self.values = self.valuesTemp.copy()
 
     def getValue(self, state):
         """
@@ -61,24 +71,13 @@ class ValueIterationAgent(ValueEstimationAgent):
         # Apply Bellman Equation to get QValue
         tempValues = self.values
         possibleStates = self.mdp.getTransitionStatesAndProbs(state, action)
-        sumValPossibleStates = 0
+        val = 0
         for posState in possibleStates:
             nextState = posState[0]
-            rew = self.mdp.getReward(state, action, nextState)
             prob = posState[1]
-            maxFutureActionVal = None
-            futureActions = self.mdp.getPossibleActions(nextState)
-            for futAction in futureActions:
-                futureActionValue = tempValues[(nextState, futAction)]
-                if maxFutureActionVal is None or futureActionValue > maxFutureActionVal:
-                    maxFutureActionVal = futureActionValue
-            if maxFutureActionVal is None:
-                maxFutureActionVal = 0
-            val = prob * (rew + (self.discount * maxFutureActionVal))
-            sumValPossibleStates += val
-        tempValues[(state, action)] = sumValPossibleStates
-        self.values = tempValues
-        return sumValPossibleStates
+            rew = self.mdp.getReward(state, action, nextState)
+            val += prob * (rew + (self.discount * tempValues[nextState]))
+        return val
 
     def computeActionFromValues(self, state):
         """
@@ -90,18 +89,11 @@ class ValueIterationAgent(ValueEstimationAgent):
           terminal state, you should return None.
         """
         retAction = None
-        maxValue = 0
+        valAct = util.Counter()
         for action in self.mdp.getPossibleActions(state):
-            actionVal = self.values[(state, action)]
-            setAction = False
-            if retAction == None:
-                setAction=True
-            else:
-                if actionVal > maxValue:
-                    setAction=True
-            if setAction:
-                maxValue=actionVal
-                retAction=action
+            val = self.computeQValueFromValues(state, action)
+            valAct[action] = val
+        retAction = valAct.argMax()
         return retAction
 
     def getPolicy(self, state):
