@@ -46,8 +46,8 @@ class QLearningAgent(ReinforcementAgent):
           Should return 0.0 if we have never seen a state
           or the Q node value otherwise
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        #Apply Q Learning  Q(s,a) <- Q(s,a) + alpha * (sample - max q value of next state)
+
 
 
     def computeValueFromQValues(self, state):
