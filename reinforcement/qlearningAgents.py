@@ -78,11 +78,14 @@ class QLearningAgent(ReinforcementAgent):
           there are no legal actions, which is the case at the
           terminal state, you should return a value of 0.0.
         """
-        valState = self.values[state]
         ret = 0.0
-        if valState != 0.0:
-            maxAction = valState.argMax()
-            ret = valState[maxAction]
+        legalActions = self.getLegalActions(state)
+        qValLegalActions = util.Counter()
+        for legalAction in legalActions:
+            qValLegalAction = self.getQValue(state, legalAction)
+            qValLegalActions[legalAction] = qValLegalAction
+        if len(qValLegalActions) > 0:
+            ret = qValLegalActions[qValLegalActions.argMax()]
         return ret
 
     def computeActionFromQValues(self, state):
@@ -91,10 +94,14 @@ class QLearningAgent(ReinforcementAgent):
           are no legal actions, which is the case at the terminal state,
           you should return None.
         """
-        valState = self.values[state]
         ret = None
-        if valState != 0.0:
-            ret = valState.argMax()
+        legalActions = self.getLegalActions(state)
+        qValLegalActions = util.Counter()
+        for legalAction in legalActions:
+            qValLegalAction = self.getQValue(state, legalAction)
+            qValLegalActions[legalAction] = qValLegalAction
+        if len(qValLegalActions) > 0:
+            ret = qValLegalActions.argMax()
         return ret
 
     def getAction(self, state):
@@ -110,14 +117,15 @@ class QLearningAgent(ReinforcementAgent):
         """
         # Pick Action
         legalActions = self.getLegalActions(state)
-        valState = self.values[state]
+        qValLegalActions = util.Counter()
+        for legalAction in legalActions:
+            qValLegalAction = self.getQValue(state, legalAction)
+            qValLegalActions[legalAction] = qValLegalAction
+
         action = None
-        if len(legalActions) > 0:
-            if valState != 0.0:
-                action = valState.argMax()
-                if util.flipCoin(self.epsilon):
-                    action = random.choice(legalActions)
-            else:
+        if len(qValLegalActions) > 0:
+            action = qValLegalActions.argMax()
+            if util.flipCoin(self.epsilon):
                 action = random.choice(legalActions)
 
         return action
@@ -209,15 +217,31 @@ class ApproximateQAgent(PacmanQAgent):
           Should return Q(state,action) = w * featureVector
           where * is the dotProduct operator
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        features = self.featExtractor.getFeatures(state, action)
+        sumValFeatures = 0.0
+        for key in features:
+            w = self.weights[key]
+            f = features[key]
+            sumValFeatures += w * f
+        return sumValFeatures
 
     def update(self, state, action, nextState, reward):
         """
            Should update your weights based on transition
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        nextLegalActions = self.getLegalActions(nextState)
+        nextActions = util.Counter()
+        for nextLegalAction in nextLegalActions:
+            nextActions[nextLegalAction] = self.getQValue(nextState, nextLegalAction)
+
+        difference = (reward + self.gamma * nextActions[nextActions.argMax()]) - self.getQValue(state, action)
+
+        features = self.featExtractor.getFeatures(state, action)
+        for key in features:
+            w = self.weights[key]
+            f = features[key]
+            w += self.alpha * difference * f
+            self.weights[key] = w
 
     def final(self, state):
         "Called at the end of each game."
@@ -227,5 +251,7 @@ class ApproximateQAgent(PacmanQAgent):
         # did we finish training?
         if self.episodesSoFar == self.numTraining:
             # you might want to print your weights here for debugging
-            "*** YOUR CODE HERE ***"
+            for key in self.weights:
+                print 'Game Ended'
+                print 'Feature %s Weight %s' % (key, self.weights[key])
             pass
